@@ -1,4 +1,3 @@
-
 #   ___________________________________________
 #
 #   BY:- heisdanieldade | www.heisdanielade.com
@@ -22,21 +21,20 @@ def spaces():
     print('  ')
 print('  ')
 
-
 print("                                  CREATE PASSWORD")
 spaces()
 print("+ Do you want a secure password to be generated for you?")
 print('   ')
 
 # generate secure password
-symbols = "@+&?#$&!£?%@$%"
-numbers = "36!150427594708"
+symbols = "@+&?#$&£%"
+numbers = "3615427594708"
 numbers2 = "83684+054270159"
-lower = "adcjklm@nopzqrsefghibtuvwxy"
-lower2 = "ijklc$dhopegfqwxrabvsztumny"
-upper = "CFWNGHIJTUZVKLMOP#BQRDYEASX"
-upper2 = "UHIL£MVWXBNOPCDEFGQRSTAJKYZ"
-length = 11
+lower = "adcjklmnodhypzqrsefghibtuvwxy"
+lower2 = "ijklcdhopegjbvfqwxrabvsztumny"
+upper = "CFWNGHIJTUZVKLMWRFOPBQRDYEASX"
+upper2 = "UHILMVWXBNOPCDEFGPOHQRSTAJKYZ"
+length = 7
 length2 = 1
 
 first_char1 = upper2 + lower
@@ -47,21 +45,24 @@ gen_pass = "".join(random.sample(all1, length))
 gen_2pass = "".join(random.sample(all2, length))
 char_pass1 = "".join(random.sample(first_char1, length2))
 char_pass2 = "".join(random.sample(first_char2, length2))
-
 # use re module with Regex, make my own character set and pass
 # this as argument in compile method
 regex_symbol = re.compile('[@+#£%$!%&?]')
 regex_number = re.compile('[0-9]')
-regex_upper_letter = re.compile("[A-Z]")
-regex_lower_letter = re.compile("[a-z]")
+regex_upper_letter = re.compile('[A-Z]')
+regex_lower_letter = re.compile('[a-z]')
 print('  ')
-timestamp = datetime.datetime.now()   # timestamp
+timestamp = datetime.datetime.now()
 
 
-class Password:   # password validation
+# password validation
+class Password:
     def main_validation(self):
         if len(enter_pass) < 8:
             print("     (i) Password is less than 8 characters")
+            print('  ')
+        elif (any(re.findall(r'[\w\.-]+@[\w\.-]+', enter_pass))):
+            print("     (i) Password can not be an email")
             print('  ')
         elif (regex_number.search(enter_pass) == None):
             print("     (i) Password must have number")
